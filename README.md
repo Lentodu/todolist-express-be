@@ -68,19 +68,19 @@ Kode dipisah per lapisan, tiap lapisan punya satu tanggung jawab.
 
 ```mermaid
 flowchart TD
-    C[Client / Postman] --> A[app.js<br/>cors, express.json, logger]
-    A --> R[Router<br/>/api/todos]
-    R --> CT[Controller<br/>HTTP: req / res]
-    CT --> S[Service<br/>validasi + logika bisnis]
-    S --> M[Model<br/>query SQL]
-    M --> DB[(MySQL)]
+    C[Client / Postman] --> A["app.js<br/>cors, express.json, logger"]
+    A --> R["Router<br/>/api/todos"]
+    R --> CT["Controller<br/>HTTP: req dan res"]
+    CT --> S["Service<br/>validasi + logika bisnis"]
+    S --> M["Model<br/>query SQL"]
+    M --> DB[("MySQL")]
     DB --> M
     M --> S
     S --> CT
-    CT -->|sukses| RES[Response JSON 2xx]
-    CT -.->|error: next&#40;err&#41;| EH[Error Handler]
+    CT -->|sukses| RES["Response JSON 2xx"]
     S -.->|throw error| CT
-    EH --> ERR[Response JSON 4xx / 5xx]
+    CT -.->|error lewat next| EH["Error Handler"]
+    EH --> ERR["Response JSON 4xx / 5xx"]
 ```
 
 ### Alur error
