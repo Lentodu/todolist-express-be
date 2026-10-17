@@ -3,6 +3,7 @@ import cors from "cors";
 // import morgan from "morgan";
 import logger from "./middleware/middleware.js";
 import todoRoutes from "./routes/route.js";
+import errorHandler from "./middleware/errorHandler.js";
 
 const app = express();
 
@@ -12,5 +13,7 @@ app.use(express.json());
 app.use(logger);
 
 app.use("/todos", todoRoutes);
+
+app.use(errorHandler);
 
 export default app;
