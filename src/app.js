@@ -14,6 +14,10 @@ app.use(logger);
 
 app.use("/todos", todoRoutes);
 
+app.use((req, res) => {
+  res.status(404).json({ message: "Route tidak ditemukan" });
+});
+
 app.use(errorHandler);
 
 export default app;
