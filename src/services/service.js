@@ -1,4 +1,4 @@
-import todoModel from "src\models\model.js";
+import todoModel from "../models/model.js";
 
 const createError = (message, status) => {
   const err = new Error(message);
@@ -11,11 +11,11 @@ const createTodo = async ({ title, description }) => {
     throw createError("Title wajib diisi!", 400);
   }
 
-  return await todoModel.insert({ title: title.trim(), description });
+  return todoModel.insert({ title: title.trim(), description });
 };
 
 const getTodos = async () => {
-  return await todoModel.findAll();
+  return todoModel.findAll();
 };
 
 const getTodo = async (id) => {
